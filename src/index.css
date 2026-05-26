@@ -1,0 +1,201 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Medical platform design system - 医疗工作台主题 */
+
+@layer base {
+  :root {
+    --background: 210 40% 98%;
+    --foreground: 215 30% 18%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 215 30% 18%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 30% 18%;
+
+    /* 医疗主色调 - 沉稳信赖蓝 */
+    --primary: 205 85% 42%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 195 90% 55%;
+
+    /* 辅助色 - 护理青绿 */
+    --secondary: 175 60% 92%;
+    --secondary-foreground: 180 70% 22%;
+
+    --muted: 210 30% 95%;
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 175 70% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    /* 状态色 */
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --warning: 35 95% 55%;
+    --warning-foreground: 0 0% 100%;
+
+    --success: 145 65% 42%;
+    --success-foreground: 0 0% 100%;
+
+    --info: 205 85% 42%;
+    --info-foreground: 0 0% 100%;
+
+    --border: 210 25% 88%;
+    --input: 210 25% 88%;
+    --ring: 205 85% 42%;
+
+    --radius: 0.75rem;
+
+    /* 渐变 */
+    --gradient-primary: linear-gradient(135deg, hsl(205 85% 42%), hsl(195 90% 55%));
+    --gradient-nurse: linear-gradient(135deg, hsl(175 70% 45%), hsl(185 75% 55%));
+    --gradient-doctor: linear-gradient(135deg, hsl(215 80% 45%), hsl(205 85% 55%));
+    --gradient-community: linear-gradient(135deg, hsl(155 60% 42%), hsl(175 65% 50%));
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%), hsl(210 30% 98%));
+
+    /* 阴影 */
+    --shadow-soft: 0 2px 8px -2px hsl(215 30% 18% / 0.06);
+    --shadow-card: 0 4px 16px -4px hsl(215 30% 18% / 0.08);
+    --shadow-elegant: 0 10px 30px -10px hsl(205 85% 42% / 0.25);
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 215 30% 18%;
+    --sidebar-primary: 205 85% 42%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 30% 95%;
+    --sidebar-accent-foreground: 215 30% 18%;
+    --sidebar-border: 210 25% 88%;
+    --sidebar-ring: 205 85% 42%;
+  }
+
+  .dark {
+    --background: 215 35% 8%;
+    --foreground: 210 40% 96%;
+    --card: 215 30% 12%;
+    --card-foreground: 210 40% 96%;
+    --popover: 215 30% 12%;
+    --popover-foreground: 210 40% 96%;
+    --primary: 195 90% 55%;
+    --primary-foreground: 215 35% 8%;
+    --secondary: 175 30% 18%;
+    --secondary-foreground: 175 70% 80%;
+    --muted: 215 25% 16%;
+    --muted-foreground: 215 15% 65%;
+    --accent: 175 70% 45%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 65% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --warning: 35 90% 55%;
+    --warning-foreground: 0 0% 100%;
+    --success: 145 60% 45%;
+    --success-foreground: 0 0% 100%;
+    --border: 215 25% 20%;
+    --input: 215 25% 20%;
+    --ring: 195 90% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+@layer utilities {
+  .bg-gradient-primary { background: var(--gradient-primary); }
+  .bg-gradient-nurse { background: var(--gradient-nurse); }
+  .bg-gradient-doctor { background: var(--gradient-doctor); }
+  .bg-gradient-community { background: var(--gradient-community); }
+  .bg-gradient-card { background: var(--gradient-card); }
+  .shadow-soft { box-shadow: var(--shadow-soft); }
+  .shadow-card { box-shadow: var(--shadow-card); }
+  .shadow-elegant { box-shadow: var(--shadow-elegant); }
+}
+
+/* 危急呼吸灯动效 */
+@keyframes critical-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 hsl(var(--destructive) / 0.55); }
+  50% { box-shadow: 0 0 0 8px hsl(var(--destructive) / 0); }
+}
+.animate-critical-pulse { animation: critical-pulse 1.6s ease-out infinite; }
+
+/* 手机外壳样式 */
+.phone-shell {
+  position: relative;
+  border-radius: 44px;
+  padding: 14px;
+  background: linear-gradient(160deg, #1f2937 0%, #0b1220 60%, #1a2332 100%);
+  box-shadow:
+    0 0 0 2px hsl(215 30% 22%),
+    0 30px 60px -20px hsl(215 50% 8% / 0.55),
+    inset 0 0 0 1px hsl(0 0% 100% / 0.04);
+}
+.phone-shell::before,
+.phone-shell::after {
+  content: "";
+  position: absolute;
+  right: -3px;
+  width: 3px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, #2a3340, #1a2230);
+}
+.phone-shell::before { top: 110px; height: 56px; }
+.phone-shell::after { top: 190px; height: 86px; }
+.phone-shell .phone-side-left {
+  position: absolute;
+  left: -3px;
+  top: 140px;
+  width: 3px;
+  height: 110px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, #2a3340, #1a2230);
+}
+.phone-screen {
+  position: relative;
+  border-radius: 32px;
+  overflow: hidden;
+  background: hsl(var(--background));
+  box-shadow: inset 0 0 0 1px hsl(0 0% 0% / 0.4);
+}
+.phone-notch {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 110px;
+  height: 26px;
+  background: #000;
+  border-radius: 16px;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 10px;
+}
+.phone-notch::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #1a2332;
+  box-shadow: inset 0 0 2px #0ea5e9;
+}
+.phone-statusbar {
+  position: relative;
+  z-index: 55;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 26px 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: hsl(var(--foreground));
+  background: hsl(var(--background));
+}
